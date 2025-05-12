@@ -1,0 +1,6 @@
+@Smart_Yard_Manager_HostAddress = http://localhost:5122
+
+GET {{Smart_Yard_Manager_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
