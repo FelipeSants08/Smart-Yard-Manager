@@ -1,6 +1,6 @@
 ﻿namespace Smart_Yard_Manager.Controllers
 {
-    public class SensorControler
+    public class SensorController
     {
     }
 }
