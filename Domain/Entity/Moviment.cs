@@ -6,7 +6,7 @@
         public string PlacaMoto { get; set; } = null!;
         public DateTime DataHora { get; set; }
 
-        public Guid AntenaId { get; set; }
+        public Guid SensorId { get; set; }
         public Sensor Sensor { get; set; } = null!;
     }
 }
