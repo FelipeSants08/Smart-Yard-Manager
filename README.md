@@ -66,5 +66,5 @@ cd seu-repositorio
 dotnet run
 
 4. Acesse a documentação interativa via Swagger:
-https://localhost:5001/swagger
+https://localhost:7197/swagger/index.html
 
