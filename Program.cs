@@ -1,27 +1,35 @@
 using Microsoft.EntityFrameworkCore;
 using Smart_Yard_Manager.Infrastructure.Context;
 using AutoMapper;
-using Smart_Yard_Manager.Infrastructure.Mappings; // ou o namespace do seu MappingProfileusing Oracle.EntityFrameworkCore;
-
+using Smart_Yard_Manager.Infrastructure.Mappings;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Adiciona o DbContext (configure sua connection string corretamente)
+// Configuração do banco
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("OracleConnection")));
-// Use o provider correto: Oracle, SQL Server, etc
 
-// 2. Adiciona AutoMapper
-builder.Services.AddAutoMapper(typeof(MappingProfile)); // ou use Assembly.GetExecutingAssembly()
+// AutoMapper
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-// 3. Add Controllers e Swagger (já está ok)
+// Controllers e Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(x =>
+{
+    x.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = builder.Configuration["Swagger:Title"],
+        Description = "API para controle de motos dentro do ambiente Mottu",
+        Contact = new OpenApiContact { Name = "Felipe Santana, Emily Macedo, Gabriela Gomes Cezar", Email = "RM558916@fiap.com.br" }
+    });
+});
 
 var app = builder.Build();
 
-// pipeline de requisição HTTP
+// Middlewares
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

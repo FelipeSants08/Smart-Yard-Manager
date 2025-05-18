@@ -36,6 +36,6 @@ namespace Smart_Yard_Manager.Infrastructure.Mappings
                 .HasForeignKey(m => m.SensorId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
-        
+
     }
 }
